@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import styled from 'styled-components';
 import PlayAudioButton from "./PlayAudioButton";
-import ContinueButton from "./ContinueButton";
 
 const Wrapper = styled.div`
   width: 300px;
