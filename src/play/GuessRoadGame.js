@@ -4,12 +4,17 @@ import { withRouter } from "react-router";
 import Done from '@material-ui/icons/Done';
 import shuffle from 'lodash/shuffle';
 
-import TramImage from '../assets/images/tram.jpg';
-import TrainImage from '../assets/images/train.jpg';
-import BicycleImage from '../assets/images/bicycle.png';
-import MotorcycleImage from '../assets/images/motorcycle.jpg';
-import CarImage from '../assets/images/car.jpg';
-import BusImage from '../assets/images/bus.jpg';
+import BicycleImage from '../assets/images/guessRoadGame/vehicles/bicycle.jpg';
+import CarImage from '../assets/images/guessRoadGame/vehicles/car.jpg';
+import TrainImage from '../assets/images/guessRoadGame/vehicles/train.png';
+import TractorImage from '../assets/images/guessRoadGame/vehicles/tractor.jpg';
+import PedestrianImage from '../assets/images/guessRoadGame/vehicles/pedestrian.jpg';
+
+import BicycleRoadImage from '../assets/images/guessRoadGame/roads/bicycle.jpg';
+import CarRoadImage from '../assets/images/guessRoadGame/roads/car.jpg';
+import TrainRoadImage from '../assets/images/guessRoadGame/roads/train.jpg';
+import TractorRoadImage from '../assets/images/guessRoadGame/roads/tractor.jpg';
+import PedestrianRoadImage from '../assets/images/guessRoadGame/roads/pedestrian.jpg';
 
 const Wrapper = styled.div`
     background: #36D1DC;  /* fallback for old browsers */
@@ -82,42 +87,36 @@ const Text = styled.div`
 `;
 
 const firstElementsArray = [{
-    image: TramImage,
-    value: 'tram',
-}, {
-    image: TrainImage,
-    value: 'train',
-}, {
     image: BicycleImage,
     value: 'bicycle',
-}, {
-    image: MotorcycleImage,
-    value: 'motorcycle',
 }, {
     image: CarImage,
     value: 'car',
 }, {
-    image: BusImage,
-    value: 'bus',
+    image: TrainImage,
+    value: 'train',
+}, {
+    image: TractorImage,
+    value: 'tractor',
+}, {
+    image: PedestrianImage,
+    value: 'pedestrian',
 }];
 const secondElementsArray = [{
-    image: TramImage,
-    value: 'tram',
-}, {
-    image: TrainImage,
-    value: 'train',
-}, {
-    image: BicycleImage,
+    image: BicycleRoadImage,
     value: 'bicycle',
 }, {
-    image: MotorcycleImage,
-    value: 'motorcycle',
-}, {
-    image: CarImage,
+    image: CarRoadImage,
     value: 'car',
 }, {
-    image: BusImage,
-    value: 'bus',
+    image: TrainRoadImage,
+    value: 'train',
+}, {
+    image: TractorRoadImage,
+    value: 'tractor',
+}, {
+    image: PedestrianRoadImage,
+    value: 'pedestrian',
 }];
 
 const GuessRoadGame = ({ match }) => {
