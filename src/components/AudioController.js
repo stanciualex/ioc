@@ -76,6 +76,10 @@ const AudioController = ({ src, progressBar = true, onProgressCallback, autoPlay
         const currentProgress = currentTime * 100 / duration;
         setProgress(currentProgress);
         onProgressCallback && onProgressCallback(currentProgress);
+
+        if (currentProgress === 100) {
+            setPlaying(false);
+        }
     };
 
     if (!src) {
