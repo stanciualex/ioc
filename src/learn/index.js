@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import LearnPage from "./LearnPage";
 import { withRouter } from 'react-router';
 
-import PlayLearnAudio from '../assets/audio/Play_Learn.mp3';
 import TramAudio from '../assets/audio/Tram.mp3';
 import TrainAudio from '../assets/audio/Train.mp3';
 import BicycleAudio from '../assets/audio/Bicycle.mp3';
@@ -11,7 +10,6 @@ import CarAudio from '../assets/audio/Car.mp3';
 import BusAudio from '../assets/audio/Bus.mp3';
 import PedestrianAudio from '../assets/audio/Pedestrian.mp3';
 
-import GarageImage from '../assets/images/garage.jpg';
 import TramImage from '../assets/images/tram.jpg';
 import TrainImage from '../assets/images/train.jpg';
 import BicycleImage from '../assets/images/bicycle.png';
@@ -26,15 +24,16 @@ const Learn = ({ history, match }) => {
     const [audioSource, setAudioSource] = useState(null);
     const [imageSource, setImageSource] = useState(null);
     const [pageTitle, setPageTitle] = useState('');
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
-        const paramsPage = parseInt(match.params.id);
+        let paramsPage = parseInt(match.params.id);
 
-        if (!isNaN(paramsPage)) {
-            setPage(paramsPage);
+        if (isNaN(paramsPage) || paramsPage < 1 || paramsPage > LAST_PAGE) {
+            paramsPage = 1;
         }
 
+        setPage(paramsPage);
         setAudioSource(getAudioSourceByPage(paramsPage));
         setImageSource(getImageSourceByPage(paramsPage));
         setPageTitle(getTitleByPage(paramsPage));
@@ -45,7 +44,7 @@ const Learn = ({ history, match }) => {
 
         if (page === LAST_PAGE) {
             localStorage.setItem('isLearnSectionDone', JSON.stringify(true));
-            history.push('/play');
+            history.push('/');
             return;
         }
 
@@ -69,7 +68,7 @@ const Learn = ({ history, match }) => {
             case 7:
                 return PedestrianAudio;
             default:
-                return PlayLearnAudio;
+                return null;
         }
     };
 
@@ -90,7 +89,7 @@ const Learn = ({ history, match }) => {
             case 7:
                 return PedestrianImage;
             default:
-                return GarageImage;
+                return null;
         }
     };
 
@@ -111,7 +110,7 @@ const Learn = ({ history, match }) => {
             case 7:
                 return 'Pietonul';
             default:
-                return 'Bun venit la garajul meu!';
+                return null;
         }
     };
 

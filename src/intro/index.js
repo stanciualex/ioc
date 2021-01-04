@@ -2,13 +2,19 @@ import React from 'react';
 import styled from "styled-components";
 import { withRouter } from "react-router";
 
-import LearnImage from "../assets/images/learn-image.png";
-import PlayImage from "../assets/images/play-image.png";
+import BackgroundImage from '../assets/images/home-background.jpg';
+import LearnAudio from '../assets/audio/Play_Learn.mp3';
+import GameAudio from '../assets/audio/Play_Game.mp3';
+import Button from "../components/Button";
+import AudioController from "../components/AudioController";
 
 const Wrapper = styled.div`
-  display: flex;
   width: 100vw;
   height: 100vh;
+  background: url(${props => props.background});
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 `;
 
 const Section = styled.div`
@@ -17,37 +23,38 @@ const Section = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  width: 15%;
+  height: 10%;
+  min-height: 50px;
+  position: absolute;
+  bottom: 16px;
   
   ${props => props.disabled && `
     filter: grayscale(100%);
     cursor: no-drop;
   `}
-  
-  & img {
-    transition: all 0.1s linear;
-  }
-  
-  &:hover {
-    img {
-      transform: scale(1.25);
-    }
-  }
 `;
 
 const LearnSection = styled(Section)`
-    background: #de6262; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #de6262, #ffb88c); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #de6262, #ffb88c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+     left: 16px;
 `;
 
 const PlaySection = styled(Section)`
-    background: #4b6cb7;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #182848, #4b6cb7);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #182848, #4b6cb7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    right: 16px;
+`;
+
+const AudioWrapper = styled.div`
+  text-align: center;
+  margin-top: 5%;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const Intro = ({ history }) => {
     const isLearnSectionDone = JSON.parse(localStorage.getItem('isLearnSectionDone'));
+    const audioSrc = isLearnSectionDone ? GameAudio : LearnAudio;
 
     const goToLearnSection = () => {
         history.push('/learn')
@@ -60,12 +67,15 @@ const Intro = ({ history }) => {
     };
 
     return (
-        <Wrapper>
+        <Wrapper background={BackgroundImage}>
+            <AudioWrapper>
+                <AudioController src={audioSrc}/>
+            </AudioWrapper>
             <LearnSection onClick={goToLearnSection}>
-                <img src={LearnImage} alt="Learn"/>
+                <Button type="book"/>
             </LearnSection>
             <PlaySection onClick={goToPlaySection} disabled={!isLearnSectionDone}>
-                <img src={PlayImage} alt="Play"/>
+                <Button type="play"/>
             </PlaySection>
         </Wrapper>
     );

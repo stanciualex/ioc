@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
-import ContinueButton from "../components/ContinueButton";
 import AudioController from "../components/AudioController";
 
-import QueenImage from '../assets/images/queen.jpg';
+import Button from "../components/Button";
 
 const Wrapper = styled.div`
     background: #DC2424;  /* fallback for old browsers */
@@ -15,6 +14,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: absolute;
 `;
 
 const Title = styled.h3`
@@ -23,61 +23,81 @@ const Title = styled.h3`
   margin-bottom: 32px;
   font-size: 46px;
   color: #ffffff;
-  text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
-`;
-
-const Content = styled.div`
-  display: flex;
-`;
-
-const LeftContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-right: 32px;
-`;
-
-const RightContent = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Controls = styled.div`
-    display: flex;
-    margin: 32px 0;
-`;
-
-const Queen = styled.img`
-  width: 200px;
-  height: auto;
+  text-shadow: 0px 8px 12px rgba(255,255,255,0.1);
+  position: absolute;
+  top: 16px;
 `;
 
 const Image = styled.img`
-  width: 80%;
+  width: 70%;
   height: auto;
 `;
 
+const AudioButtonWrapper = styled.div`
+  position: absolute;
+  left: 16px;
+  bottom: 32px;
+`;
+
+const ContinueButtonWrapper = styled.div`
+  position: absolute;
+  right: 16px;
+  bottom: 32px;
+  cursor: pointer;
+`;
+
+const ProgressBar = styled.div`
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: #e3e3e3;
+  height: 10px; 
+`;
+
+const Progress = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: ${props => `${props.percent}%`};
+  background-color: #30a6e6;
+  height: 100%;
+  transition: width 0.33s linear;
+`;
+
 const LearnPage = ({ audioSource, imageSource, title, onContinue }) => {
+    const [audioProgress, setAudioProgress] = useState(0);
+
+    const onProgressCallback = (value) => {
+        setAudioProgress(value);
+
+        if (value === 100) {
+            onContinue();
+        }
+    };
+
     return (
         <Wrapper>
             <Title>{title}</Title>
 
-            <Content>
-                <LeftContent>
-                    <Queen src={QueenImage} alt="Queen"/>
+            <Image src={imageSource} />
 
-                    <Controls>
-                        <AudioController src={audioSource}/>
-                        <ContinueButton onClick={onContinue}/>
-                    </Controls>
-                </LeftContent>
+            <AudioButtonWrapper>
+                <AudioController
+                    src={audioSource}
+                    progressBar={false}
+                    onProgressCallback={onProgressCallback}
+                    autoPlay
+                />
+            </AudioButtonWrapper>
 
-                <RightContent>
-                    <Image src={imageSource} />
-                </RightContent>
-            </Content>
+            <ContinueButtonWrapper onClick={onContinue}>
+                <Button type="continue"/>
+            </ContinueButtonWrapper>
+
+            <ProgressBar>
+                <Progress percent={audioProgress} />
+            </ProgressBar>
         </Wrapper>
     );
 };

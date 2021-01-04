@@ -10,9 +10,10 @@ const Wrapper = styled.div`
   background-color: #30a6e6;
   position: relative;
   cursor: pointer;
+  transition: all 0.2s linear;
   
   &:hover {
-    background-color: #259bdb;
+    transform: scale(1.1);
   }
 `;
 

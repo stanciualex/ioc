@@ -11,6 +11,8 @@ const Wrapper = styled.div`
   justify-content: space-between;
 `;
 
+const SingleButtonWrapper = styled.div``;
+
 const ProgressBar = styled.div`
   height: 6px;
   margin-left: 16px;
@@ -28,10 +30,10 @@ const Progress = styled.div`
   background-color: #30a6e6;
   height: 100%;
   border-radius: 4px;
-  transition: width 0.1s linear;
+  transition: width 0.3s linear;
 `;
 
-const AudioController = ({ src }) => {
+const AudioController = ({ src, progressBar = true, onProgressCallback, autoPlay = false }) => {
     const audioElement = useRef(null);
     const [playing, setPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
@@ -39,6 +41,11 @@ const AudioController = ({ src }) => {
     useEffect(() => {
         if (audioElement && audioElement.current) {
             audioElement.current.addEventListener('timeupdate', onProgress);
+
+            if (autoPlay) {
+                audioElement.current.play();
+                setPlaying(true);
+            }
         }
     }, [audioElement.current]);
 
@@ -47,6 +54,11 @@ const AudioController = ({ src }) => {
             audioElement.current.src = src;
             setPlaying(false);
             setProgress(0);
+
+            if (autoPlay) {
+                audioElement.current.play();
+                setPlaying(true);
+            }
         }
     }, [src]);
 
@@ -63,24 +75,29 @@ const AudioController = ({ src }) => {
         const { currentTime, duration } = event.target;
         const currentProgress = currentTime * 100 / duration;
         setProgress(currentProgress);
+        onProgressCallback && onProgressCallback(currentProgress);
     };
 
     if (!src) {
         return null;
     }
 
+    const WrapperComponent = progressBar ? Wrapper : SingleButtonWrapper;
+
     return (
-        <Wrapper>
+        <WrapperComponent>
             <PlayAudioButton playing={playing} onClick={togglePlaying}/>
 
             <audio id="audio" ref={audioElement}>
                 <source type="audio/mpeg"/>
             </audio>
 
-            <ProgressBar>
-                <Progress percent={progress}/>
-            </ProgressBar>
-        </Wrapper>
+            {progressBar && (
+                <ProgressBar>
+                    <Progress percent={progress}/>
+                </ProgressBar>
+            )}
+        </WrapperComponent>
     );
 };
 
