@@ -72,7 +72,7 @@ const LearnPage = ({ audioSource, imageSource, title, onContinue }) => {
         setAudioProgress(value);
 
         if (value === 100) {
-            onContinue();
+            setTimeout(() => onContinue(), 3000)
         }
     };
 

@@ -229,7 +229,9 @@ const GuessRoadGame = ({ match }) => {
                     ))}
                 </Column>
 
-                {isGameDone && <Text>Felicitari! 🎉</Text>}
+                <Text>GASESTE DRUMUL POTRIVIT </Text>
+
+                {isGameDone && <Text>FELICITARI! 🎉</Text>}
 
                 <Column>
                     {secondElements.map((item, index) => (

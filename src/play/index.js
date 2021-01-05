@@ -7,6 +7,8 @@ import Game1Task from '../assets/audio/game1/task.mp3';
 import Game2Task from '../assets/audio/game2/task.mp3';
 import Game3Task from '../assets/audio/game3/task.mp3';
 import AudioController from "../components/AudioController";
+import MatchPairsGame from "./MatchPairsGame";
+import Button from "../components/Button";
 
 const Wrapper = styled.div`
     background: #36D1DC;  /* fallback for old browsers */
@@ -42,8 +44,15 @@ const Progress = styled.div`
   transition: width 0.33s linear;
 `;
 
+const ContinueButtonWrapper = styled.div`
+  position: absolute;
+  right: 16px;
+  bottom: 32px;
+  cursor: pointer;
+`;
 
-const Play = ({ match }) => {
+
+const Play = ({ history, match }) => {
     const [page, setPage] = useState(0);
     const [audioProgress, setAudioProgress] = useState(0);
 
@@ -56,6 +65,18 @@ const Play = ({ match }) => {
 
         setPage(paramsPage);
     }, [match.params.id]);
+
+    const goNext = () => {
+        const nextPage = page ? page + 1 : 1;
+
+        // if (page === LAST_PAGE) {
+        //     localStorage.setItem('isLearnSectionDone', JSON.stringify(true));
+        //     history.push('/');
+        //     return;
+        // }
+
+        history.push(`/play/${nextPage}`);
+    };
 
     const getGameAudioByPage = (page) => {
         switch (page) {
@@ -72,8 +93,16 @@ const Play = ({ match }) => {
 
     const getGameComponentByPage = (page) => {
         switch (page) {
-            default:
+            case 1:
+                return MatchPairsGame;
+            case 2:
                 return GuessRoadGame;
+            case 3:
+                return MatchPairsGame;
+            case 4:
+                return GuessRoadGame;
+            default:
+                return MatchPairsGame;
         }
     }
 
@@ -102,7 +131,7 @@ const Play = ({ match }) => {
                 <Progress percent={gameProgress} backgroundColor="red"/>
             </ProgressBar>
 
-            <GameComponent/>
+            <GameComponent onc  c/>
 
             <AudioButtonWrapper>
                 <AudioController
@@ -115,6 +144,9 @@ const Play = ({ match }) => {
 
             <ProgressBar>
                 <Progress percent={audioProgress} backgroundColor="#30a6e6"/>
+                {page < 4 && <ContinueButtonWrapper onClick={goNext}>
+                    <Button type="continue"/>
+                </ContinueButtonWrapper>}
             </ProgressBar>
         </Wrapper>
     );
