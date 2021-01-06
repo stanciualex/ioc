@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import AudioController from "../components/AudioController";
 
@@ -70,11 +70,13 @@ const LearnPage = ({ audioSource, imageSource, title, onContinue }) => {
 
     const onProgressCallback = (value) => {
         setAudioProgress(value);
-
-        if (value === 100) {
-            setTimeout(() => onContinue(), 3000)
-        }
     };
+
+    useEffect(() => {
+        if (audioProgress === 100) {
+            setTimeout(() => onContinue(), 3000);
+        }
+    }, [audioProgress]);
 
     return (
         <Wrapper>
