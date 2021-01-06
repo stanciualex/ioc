@@ -45,16 +45,32 @@ const Wrapper = styled.div`
       width: 100%;
       border-radius: 10px;
        
-       .audio {
-       }
-      
       .all-answers {
         display: flex;
+        flex-direction: row;
         align-items: center;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
         
-        img {
+        .row {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+        
+        .mb {
+          margin-bottom: 20px;
+        }
+        
+        .image {
           height: 200px;
           border-radius: 10px;
+          margin-right: 30px;
+          
+          @media only screen and (max-width: 1000px) {
+            height: 170px;
+          }
         }
       
         .answer {
@@ -67,6 +83,11 @@ const Wrapper = styled.div`
           display: flex;
           justify-content: center;
           overflow: hidden;
+          
+          @media only screen and (max-width: 1000px) {
+            height: 150px;
+            margin-left: 20px;
+          }
           
           &:hover {
               cursor: pointer;
@@ -109,6 +130,7 @@ const Text = styled.div`
   font-family: 'Comic Sans MS', cursive;
   font-size: 38px;
   color: #ffffff;
+  text-align: center;
   text-shadow: 2px 2px 3px rgba(0,0,0,0.7);
   margin: auto;
   padding-bottom: 20px;
@@ -344,14 +366,15 @@ const AnswerQuestionsGame = () => {
 
                     return (
                         <div className="question" key={question.id}>
-                            <div className="audio">
-
-                            </div>
                             <Text>{question.question}</Text>
                             <div className="all-answers">
-                                {question.image && <img src={question.image} alt="Question"/>}
-                                <AudioController src={question.audio}/>
-                                {allAnswers}
+                                <div className="row mb">
+                                    {question.image && <img className="image" src={question.image} alt="Question"/>}
+                                    <AudioController src={question.audio}/>
+                                </div>
+                                <div className="row">
+                                    {allAnswers}
+                                </div>
                             </div>
                         </div>
                     )

@@ -29,6 +29,7 @@ const GameWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 80%;
+  padding: 0 30px;
 `;
 
 const Column = styled.div`
@@ -42,6 +43,10 @@ const Column = styled.div`
 const ImageContainer = styled.div`
   max-width: 200px;
   max-height: 200px;
+  @media only screen and (max-width: 1000px) {
+        max-height: 160px;
+        max-width: 160px;
+      }
   cursor: pointer;
   margin: 12px auto;
   position: relative;

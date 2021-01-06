@@ -34,6 +34,11 @@ const Wrapper = styled.div`
       width: 180px;
       height: 180px;
       border-radius: 10px;
+      
+      @media only screen and (max-width: 1000px) {
+        height: 150px;
+        width: 150px;
+      }
     }
 `;
 
@@ -63,6 +68,10 @@ const Text = styled.div`
 const Board = styled.div`
   min-height: 800px;
   width: 800px;
+  @media only screen and (max-width: 1000px) {
+    min-height: 700px;
+    width: 700px;
+  }
   display: flex;
   justify-content: space-evenly;
   align-items: center;
