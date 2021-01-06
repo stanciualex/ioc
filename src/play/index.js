@@ -31,7 +31,7 @@ const ProgressBar = styled.div`
   ${props => props.top ? 'top: 0' : 'bottom: 0'};
   bottom: 0;
   background-color: #e3e3e3;
-  height: 10px;
+  height: 4px;
   z-index: 2; 
 `;
 
