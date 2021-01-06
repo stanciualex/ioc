@@ -9,17 +9,21 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  
+  @media only screen and (max-width: 1000px) {
+    width: 200px;
+    height: 100px;
+  }
 `;
 
 const SingleButtonWrapper = styled.div``;
 
 const ProgressBar = styled.div`
   height: 6px;
-  margin-left: 16px;
   border-radius: 4px;
   background-color: #ffffff;
   position: relative;
-  width: 90%;
+  width: 100%;
 `;
 
 const Progress = styled.div`

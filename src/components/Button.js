@@ -22,6 +22,13 @@ const Wrapper = styled.div`
     box-shadow: 0 16px 24px rgba(0, 0, 0, 0.15);
     transform: scale(1.1);
   }
+  
+  @media only screen and (max-width: 1000px) {
+    width: 150px;
+    height: 35px;
+    font-size: 14px;|
+  }
+  
 `;
 
 const Text = styled.div`

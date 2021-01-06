@@ -15,6 +15,11 @@ const Wrapper = styled.div`
   &:hover {
     transform: scale(1.1);
   }
+  
+  @media only screen and (max-width: 1000px) {
+    width: 80px;
+    height: 80px;
+  }
 `;
 
 const PlayIcon = styled(PlayArrow)`

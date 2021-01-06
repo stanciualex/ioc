@@ -26,6 +26,10 @@ const Title = styled.h3`
   text-shadow: 0px 8px 12px rgba(0,0,0,0.7);
   position: absolute;
   top: 16px;
+  
+  @media only screen and (max-width: 1000px) {
+    font-size: 36px;
+  }
 `;
 
 const Image = styled.img`
