@@ -19,25 +19,29 @@ const Wrapper = styled.div`
     background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #5B86E5, #36D1DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     width: 100vw;
+    padding-top: 50px;
     height: 100vh;
 `;
 
 const GameWrapper = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
-  padding: 0 64px;
-  height: 100%;
+  height: 80%;
 `;
 
 const Column = styled.div`
-  width: 30%;
-  height: 100vh;
+  width: 100%;
   overflow: scroll;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const ImageContainer = styled.div`
-  width: 200px;
-  height: 200px;
+  max-width: 200px;
+  max-height: 200px;
   cursor: pointer;
   margin: 12px auto;
   position: relative;
@@ -220,9 +224,9 @@ const GuessRoadGame = ({ match }) => {
                 </Column>
 
                 <Message>
-                    <Text>Găsește drumul potrivit </Text>
+                    <Text>Găsește drumul potrivit </Text> <br/>
 
-                    {isGameDone && <Text>Felicitări! 🎉</Text>}
+                    {isGameDone && <Text>Joc complet! 🎉</Text>}
                 </Message>
 
                 <Column>

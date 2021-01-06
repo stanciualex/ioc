@@ -2,16 +2,21 @@ import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import shuffle from 'lodash/shuffle';
 
-import PoliceImage from '../assets/images/police.png';
 import Question1 from '../assets/images/answerQuestionsGame/question1.jpg';
 import Question2 from '../assets/images/answerQuestionsGame/question2.jpg';
 import Question3 from '../assets/images/answerQuestionsGame/question3.jpg';
+import Question7 from '../assets/images/answerQuestionsGame/question7.jpg';
+import Question8 from '../assets/images/answerQuestionsGame/question8.jpg';
+import Question9 from '../assets/images/answerQuestionsGame/question9.jpg';
 import Question4Answer1 from '../assets/images/answerQuestionsGame/question4/autobuz.jpg';
 import Question4Answer2 from '../assets/images/answerQuestionsGame/question4/tramvai.jpg';
 import Question4Answer3 from '../assets/images/answerQuestionsGame/question4/tren.png';
 import Question5Answer1 from '../assets/images/answerQuestionsGame/question5/bicicleta.jpg';
 import Question5Answer2 from '../assets/images/answerQuestionsGame/question5/masina.jpg';
 import Question5Answer3 from '../assets/images/answerQuestionsGame/question5/pieton.jpg';
+import Question6Answer1 from '../assets/images/answerQuestionsGame/question6/tren.png';
+import Question6Answer2 from '../assets/images/answerQuestionsGame/question6/autobuz.jpg';
+import Question6Answer3 from '../assets/images/answerQuestionsGame/question6/motocicleta.jpg';
 
 import AudioController from "../components/AudioController";
 import GameAudio from '../assets/audio/Play_Game.mp3';
@@ -40,7 +45,6 @@ const Wrapper = styled.div`
         align-items: center;
         
         img {
-          //width: 200px;
           height: 200px;
           border-radius: 10px;
         }
@@ -103,7 +107,7 @@ const GameWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 0 64px;
-  width: 80%;
+  width: 90%;
   margin: 100px auto 300px auto;
   
 `;
@@ -175,7 +179,7 @@ const allQuestions = [
         ],
         correct: 0,
         audio: GameAudio,
-        image: PoliceImage
+        image: Question7
     },
     {
         question: "Cate vagoane are trenul din imagine?",
@@ -192,7 +196,7 @@ const allQuestions = [
         ],
         correct: 1,
         audio: GameAudio,
-        image: PoliceImage
+        image: Question8
     },
     {
         question: "Cate tramvaie sunt in imagine?",
@@ -209,7 +213,7 @@ const allQuestions = [
         ],
         correct: 2,
         audio: GameAudio,
-        image: PoliceImage
+        image: Question9
     },
     {
         question: "Merge pe sine, transporta marfa si opreste in gara, ce e?",
@@ -231,13 +235,13 @@ const allQuestions = [
         question: "Are roti, nu e masina, are pedale, nu merge cu benzina, ce e?",
         answers: [
             {
-                image: Question5Answer1
+                image: Question5Answer3
             },
             {
                 image: Question5Answer2
             },
             {
-                image: Question5Answer3
+                image: Question5Answer1
             }
         ],
         correct: 2,
@@ -247,24 +251,23 @@ const allQuestions = [
         question: "Multi calatori cara in spate si opreste in statiile special amenajate, ce e?",
         answers: [
             {
-                image: PoliceImage
+                image: Question6Answer2
             },
             {
-                image: PoliceImage
+                image: Question6Answer1
             },
             {
-                image: PoliceImage
+                image: Question6Answer3
             }
         ],
         correct: 0,
         audio: GameAudio
     }
-]
+];
 
 const AnswerQuestionsGame = () => {
     const [questions, setQuestions] = useState([]);
     const [score, setScore] = useState(0);
-    const [responses, setResponses] = useState(0);
 
     useEffect(() => {
         const updatedQuestions = allQuestions.map(question => ({
@@ -274,9 +277,20 @@ const AnswerQuestionsGame = () => {
                 ...answer,
                 selected: false
             }))
-        }))
-        setQuestions(shuffle(updatedQuestions))
+        }));
+        setQuestions(shuffle(updatedQuestions));
+        setScore(0);
     }, []);
+
+    useEffect(() => {
+        let score = 0
+        questions.forEach(question => {
+            if (question.selectedAnswer === question.correct) {
+                score++;
+            }
+        });
+        setScore(score);
+    }, [questions]);
 
     const onAnswerClick = (questionIndex, index) => {
         let questionsCopy = [...questions];
@@ -289,11 +303,10 @@ const AnswerQuestionsGame = () => {
 
         questionsCopy[questionIndex] = updatedQuestion
         setQuestions(questionsCopy);
-        console.log('questionsCopy', questionsCopy)
-    }
+    };
 
     const questionWithNoAnswer = !!questions.find(item => item.selectedAnswer === -1);
-    const gameIsDone = !questionWithNoAnswer
+    const gameIsDone = !questionWithNoAnswer;
 
     return (
         <Wrapper>
@@ -327,7 +340,7 @@ const AnswerQuestionsGame = () => {
                         </div>
                     )
                 })}
-                {gameIsDone && <Text>Felicitări! 🎉</Text>}
+                {gameIsDone && <Text>Bravo! Ai raspuns corect la {score} intrebari! 🎉</Text>}
             </GameWrapper>
         </Wrapper>
     );

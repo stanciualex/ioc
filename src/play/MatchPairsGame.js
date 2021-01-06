@@ -2,14 +2,14 @@ import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 
 import PoliceImage from '../assets/images/police.png';
-import TramImage from '../assets/images/tram.jpg';
-import TrainImage from '../assets/images/train.jpg';
-import BicycleImage from '../assets/images/bicycle.png';
-import MotorcycleImage from '../assets/images/motorcycle.jpg';
+import TramImage from '../assets/images/answerQuestionsGame/question4/tramvai.jpg';
+import TrainImage from '../assets/images/answerQuestionsGame/question6/tren.png';
+import BicycleImage from '../assets/images/answerQuestionsGame/question5/bicicleta.jpg';
+import MotorcycleImage from '../assets/images/answerQuestionsGame/question3.jpg';
 import CarImage from '../assets/images/redCar.png';
-import BusImage from '../assets/images/bus.jpg';
+import BusImage from '../assets/images/answerQuestionsGame/question4/autobuz.jpg';
 import KidsImage from '../assets/images/kids.jpg';
-import GarageImage from '../assets/images/garage.jpg';
+import GarageImage from '../assets/images/answerQuestionsGame/question2.jpg';
 
 const Wrapper = styled.div`
     background: #DC2424;  /* fallback for old browsers */
@@ -17,11 +17,8 @@ const Wrapper = styled.div`
     background: linear-gradient(to right, #4A569D, #DC2424); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     width: 100vw;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
+    padding-bottom: 100px;
+    overflow: scroll;
     
     .Card{
       flex: 1;
@@ -60,12 +57,13 @@ const Text = styled.div`
 `;
 
 const Board = styled.div`
-  height: 800px;
+  min-height: 800px;
   width: 800px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  flex-wrap: wrap
+  flex-wrap: wrap;
+  margin: 0 auto;
 `;
 
 const shuffle = (cards) => {
@@ -171,8 +169,8 @@ const MatchPairGame = () => {
                         </div>
                     )
                 })}
-                {completed.length === 8 && <Text>Felicitări! 🎉</Text>}
             </Board>
+            {completed.length === 8 && <Text>Joc complet! 🎉</Text>}
         </Wrapper>
     );
 };
