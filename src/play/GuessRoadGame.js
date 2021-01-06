@@ -119,7 +119,7 @@ const secondElementsArray = [{
     value: 'pedestrian',
 }];
 
-const GuessRoadGame = ({ match }) => {
+const GuessRoadGame = ({ enableContinue }) => {
     const [firstElements, setFirstElements] = useState([]);
     const [secondElements, setSecondElements] = useState([]);
 
@@ -207,11 +207,21 @@ const GuessRoadGame = ({ match }) => {
         secondElementsCopy[secondElementIndex] = secondElement;
         setFirstElements(firstElementsCopy);
         setSecondElements(secondElementsCopy);
+
+        if (checkIfGameIsDone()) {
+            enableContinue();
+        }
     };
 
-    const firstHasUnmatchedElements = !!firstElements.find(item => !item.matched);
-    const secondHasUnmatchedElements = !!firstElements.find(item => !item.matched);
-    const isGameDone = !firstHasUnmatchedElements && !secondHasUnmatchedElements;
+    const checkIfGameIsDone = () => {
+        const firstHasUnmatchedElements = !!firstElements.find(item => !item.matched);
+        const secondHasUnmatchedElements = !!firstElements.find(item => !item.matched);
+
+        return !firstHasUnmatchedElements && !secondHasUnmatchedElements;
+    };
+
+
+    const isGameDone = checkIfGameIsDone();
 
     return (
         <Wrapper>

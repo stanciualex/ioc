@@ -281,7 +281,7 @@ const allQuestions = [
     }
 ];
 
-const AnswerQuestionsGame = () => {
+const AnswerQuestionsGame = ({ enableContinue }) => {
     const [questions, setQuestions] = useState([]);
     const [score, setScore] = useState(0);
 
@@ -306,6 +306,11 @@ const AnswerQuestionsGame = () => {
             }
         });
         setScore(score);
+
+        const questionWithNoAnswer = !!questions.find(item => item.selectedAnswer === -1);
+        if (questions && questions.length && !questionWithNoAnswer) {
+            enableContinue();
+        }
     }, [questions]);
 
     const onAnswerClick = (questionIndex, index) => {
