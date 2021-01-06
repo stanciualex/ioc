@@ -3,14 +3,16 @@ import styled from "styled-components";
 import shuffle from 'lodash/shuffle';
 
 import PoliceImage from '../assets/images/police.png';
-import TramImage from '../assets/images/tram.jpg';
-import TrainImage from '../assets/images/train.jpg';
-import BicycleImage from '../assets/images/bicycle.png';
-import MotorcycleImage from '../assets/images/motorcycle.jpg';
-import CarImage from '../assets/images/redCar.png';
-import BusImage from '../assets/images/bus.jpg';
-import KidsImage from '../assets/images/kids.jpg';
-import GarageImage from '../assets/images/garage.jpg';
+import Question1 from '../assets/images/answerQuestionsGame/question1.jpg';
+import Question2 from '../assets/images/answerQuestionsGame/question2.jpg';
+import Question3 from '../assets/images/answerQuestionsGame/question3.jpg';
+import Question4Answer1 from '../assets/images/answerQuestionsGame/question4/autobuz.jpg';
+import Question4Answer2 from '../assets/images/answerQuestionsGame/question4/tramvai.jpg';
+import Question4Answer3 from '../assets/images/answerQuestionsGame/question4/tren.png';
+import Question5Answer1 from '../assets/images/answerQuestionsGame/question5/bicicleta.jpg';
+import Question5Answer2 from '../assets/images/answerQuestionsGame/question5/masina.jpg';
+import Question5Answer3 from '../assets/images/answerQuestionsGame/question5/pieton.jpg';
+
 import AudioController from "../components/AudioController";
 import GameAudio from '../assets/audio/Play_Game.mp3';
 
@@ -20,15 +22,13 @@ const Wrapper = styled.div`
     background: linear-gradient(to right, #4A569D, #DC2424); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     width: 100vw;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    overflow: scroll;
+    margin: auto;
     
     .question {
       border: 1px solid black;
       padding: 20px;
-      margin-bottom: 30px;
+      margin-bottom: 60px;
       width: 100%;
       border-radius: 10px;
        
@@ -38,13 +38,19 @@ const Wrapper = styled.div`
       .all-answers {
         display: flex;
         align-items: center;
+        
+        img {
+          //width: 200px;
+          height: 200px;
+          border-radius: 10px;
+        }
       
         .answer {
           margin-left: 30px;
           border: 1px solid white;
           transition: all .2s;
           border-radius: 10px;
-          width: 180px;
+          min-width: 180px;
           height: 180px;
           display: flex;
           justify-content: center;
@@ -56,12 +62,17 @@ const Wrapper = styled.div`
           }
         
           img {
-             width: 100%;
              height: 100%;
           }
           
-          &.active {
-            border: 1px solid red;
+          &.activeTrue {
+            -webkit-filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(50deg) saturate(1000%) contrast(0.6);
+            filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(50deg) saturate(1000%) contrast(0.6);
+          }
+          
+          &.activeRed {
+            -webkit-filter: invert(40%) grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(400%) contrast(6);
+            filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(0.6);
           }
         }
       }
@@ -87,91 +98,165 @@ const Text = styled.div`
   padding-bottom: 20px;
 `;
 
-const AnswerText = styled.div`
-  font-family: 'Comic Sans MS', cursive;
-  font-size: 38px;
-  color: #ffffff;
-  text-shadow: 2px 2px 3px rgba(0,0,0,0.7);
-  margin: auto;
-  padding-bottom: 20px;
-`;
-
-const Board = styled.div`
-  height: 800px;
-  width: 800px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap
-`;
-
 const GameWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 0 64px;
   width: 80%;
-`;
-
-const Column = styled.div`
-  width: 30%;
-  height: 100vh;
-  overflow: scroll;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ImageDone = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-  background-color: rgba(66, 245, 78, 0.5);
-  color: #ffffff;
-  font-size: 40px !important;
+  margin: 100px auto 300px auto;
+  
 `;
 
 const allQuestions = [
     {
-        question: "Cati cai pot fi inhamati la o caruta?",
+        question: "Se deplaseaza pe unde trebuie biciclistul?",
         answers: [
             {
-                image: PoliceImage
+                text: 'DA'
             },
             {
-                image: PoliceImage
+                text: 'NU'
             },
             {
-                image: PoliceImage
+                text: 'NU stiu'
+            }
+        ],
+        correct: 1,
+        audio: GameAudio,
+        image: Question1
+    },
+    {
+        question: "Semaforul este rosu. Are voie pietonul sa treaca?",
+        answers: [
+            {
+                text: 'NU'
+            },
+            {
+                text: 'DA'
+            },
+            {
+                text: 'NU stiu'
+            }
+        ],
+        correct: 0,
+        audio: GameAudio,
+        image: Question2
+    },
+    {
+        question: "Motociclistul este imbracat corect?",
+        answers: [
+            {
+                text: 'NU stiu'
+            },
+            {
+                text: 'DA'
+            },
+            {
+                text: 'NU'
+            }
+        ],
+        correct: 2,
+        audio: GameAudio,
+        image: Question3
+    },
+    {
+        question: "Cate masini sunt in imagine?",
+        answers: [
+            {
+                text: '2'
+            },
+            {
+                text: '1'
+            },
+            {
+                text: '3'
+            }
+        ],
+        correct: 0,
+        audio: GameAudio,
+        image: PoliceImage
+    },
+    {
+        question: "Cate vagoane are trenul din imagine?",
+        answers: [
+            {
+                text: '1'
+            },
+            {
+                text: '3'
+            },
+            {
+                text: '2'
+            }
+        ],
+        correct: 1,
+        audio: GameAudio,
+        image: PoliceImage
+    },
+    {
+        question: "Cate tramvaie sunt in imagine?",
+        answers: [
+            {
+                text: '2'
+            },
+            {
+                text: '3'
+            },
+            {
+                text: '1'
+            }
+        ],
+        correct: 2,
+        audio: GameAudio,
+        image: PoliceImage
+    },
+    {
+        question: "Merge pe sine, transporta marfa si opreste in gara, ce e?",
+        answers: [
+            {
+                image: Question4Answer1
+            },
+            {
+                image: Question4Answer2
+            },
+            {
+                image: Question4Answer3
             }
         ],
         correct: 1,
         audio: GameAudio
     },
     {
-        question: "2",
+        question: "Are roti, nu e masina, are pedale, nu merge cu benzina, ce e?",
         answers: [
             {
-                id: 1,
-                text: 'abc'
+                image: Question5Answer1
             },
             {
-                id: 2,
-                text: 'bcd'
+                image: Question5Answer2
             },
             {
-                id: 3,
-                text: 'bcd'
+                image: Question5Answer3
             }
         ],
-        correct: 1,
+        correct: 2,
+        audio: GameAudio
+    },
+    {
+        question: "Multi calatori cara in spate si opreste in statiile special amenajate, ce e?",
+        answers: [
+            {
+                image: PoliceImage
+            },
+            {
+                image: PoliceImage
+            },
+            {
+                image: PoliceImage
+            }
+        ],
+        correct: 0,
         audio: GameAudio
     }
 ]
@@ -181,22 +266,10 @@ const AnswerQuestionsGame = () => {
     const [score, setScore] = useState(0);
     const [responses, setResponses] = useState(0);
 
-    const computeAnswer = (answer, correctAns) => {
-        if (answer === correctAns) {
-            setScore(score + 1);
-        }
-        setResponses(responses + 1)
-        // this.setState({
-        //     responses: this.state.responses < 5
-        //         ? this.state.responses + 1
-        //         : 5
-        // });
-    };
-
     useEffect(() => {
         const updatedQuestions = allQuestions.map(question => ({
             ...question,
-            selectedAnswer: 0,
+            selectedAnswer: -1,
             answers: question.answers.map(answer => ({
                 ...answer,
                 selected: false
@@ -219,7 +292,7 @@ const AnswerQuestionsGame = () => {
         console.log('questionsCopy', questionsCopy)
     }
 
-    const questionWithNoAnswer = !!questions.find(item => !item.selectedAnswer);
+    const questionWithNoAnswer = !!questions.find(item => item.selectedAnswer === -1);
     const gameIsDone = !questionWithNoAnswer
 
     return (
@@ -230,11 +303,12 @@ const AnswerQuestionsGame = () => {
                 {questions.map((question, questionIndex) => {
                     const allAnswers = question.answers.map((answer, index) => {
                         return (
-                            <div className={`answer ${question.selectedAnswer === index ? 'active' : ''}`} key={answer.id} onClick={() => onAnswerClick(questionIndex, index)}>
+                            <div
+                                className={`answer ${question.selectedAnswer === index && question.selectedAnswer === question.correct ? 'activeTrue' : ''}
+                            ${question.selectedAnswer === index && question.selectedAnswer !== question.correct ? 'activeRed' : ''}`}
+                                key={answer.id} onClick={() => onAnswerClick(questionIndex, index)}>
                                 {answer.text && <Text>{answer.text}</Text>}
                                 {answer.image && <img src={answer.image} alt="Answer"/>}
-                                {question.selectedAnswer === index && <h3>asparagusss</h3> }
-                                selected:{question.selectedAnswer} index: {index}
                             </div>
                         )
                     })
@@ -246,14 +320,15 @@ const AnswerQuestionsGame = () => {
                             </div>
                             <Text>{question.question}</Text>
                             <div className="all-answers">
+                                {question.image && <img src={question.image} alt="Question"/>}
                                 <AudioController src={question.audio}/>
                                 {allAnswers}
                             </div>
                         </div>
                     )
                 })}
+                {gameIsDone && <Text>Felicitări! 🎉</Text>}
             </GameWrapper>
-            {gameIsDone && <Text>Felicitări! 🎉</Text>}
         </Wrapper>
     );
 };
