@@ -28,23 +28,20 @@ const GameWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0 64px;
+  height: 100%;
 `;
 
 const Column = styled.div`
   width: 30%;
   height: 100vh;
   overflow: scroll;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `;
 
 const ImageContainer = styled.div`
   width: 200px;
   height: 200px;
   cursor: pointer;
-  margin: 12px 0;
+  margin: 12px auto;
   position: relative;
 `;
 
@@ -52,6 +49,8 @@ const Image = styled.img`
   width: 100%;
   height: auto;
   border: 6px solid #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
   
   ${props => props.active && `
     border: 6px solid #42f54e;
@@ -59,22 +58,16 @@ const Image = styled.img`
   
   ${props => props.matched && `
     border: 6px solid #ffffff;
+    -webkit-filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(50deg) saturate(1000%) contrast(0.6);
+    filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(50deg) saturate(1000%) contrast(0.6);
   `}
 `;
 
-const ImageDone = styled.div`
+const StyledDone = styled(Done)`
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-  background-color: rgba(66, 245, 78, 0.5);
+  top: -8%;
+  right: -8%;
   color: #ffffff;
-  font-size: 40px !important;
 `;
 
 const Text = styled.div`
@@ -228,9 +221,7 @@ const GuessRoadGame = ({ match }) => {
                         <ImageContainer onClick={() => onFirstColumnClick(index)}>
                             <Image src={item.image} alt={item.value} active={item.active} matched={item.matched}/>
                             {item.matched && (
-                                <ImageDone>
-                                    <Done/>
-                                </ImageDone>
+                                <StyledDone/>
                             )}
                         </ImageContainer>
                     ))}
@@ -247,9 +238,7 @@ const GuessRoadGame = ({ match }) => {
                         <ImageContainer onClick={() => onSecondColumnClick(index)}>
                             <Image src={item.image} alt={item.value} active={item.active} matched={item.matched}/>
                             {item.matched && (
-                                <ImageDone>
-                                    <Done/>
-                                </ImageDone>
+                                <StyledDone/>
                             )}
                         </ImageContainer>
                     ))}

@@ -64,6 +64,13 @@ const Play = ({ history, match }) => {
             paramsPage = 1;
         }
 
+        if (paramsPage < 1) {
+            paramsPage = 1;
+        }
+        if (paramsPage > 3) {
+            paramsPage = 3;
+        }
+
         setPage(paramsPage);
     }, [match.params.id]);
 
