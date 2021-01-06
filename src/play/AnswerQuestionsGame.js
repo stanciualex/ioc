@@ -19,7 +19,15 @@ import Question6Answer2 from '../assets/images/answerQuestionsGame/question6/aut
 import Question6Answer3 from '../assets/images/answerQuestionsGame/question6/motocicleta.jpg';
 
 import AudioController from "../components/AudioController";
-import GameAudio from '../assets/audio/Play_Game.mp3';
+import Question1Audio from '../assets/audio/game3/question4.mp3';
+import Question2Audio from '../assets/audio/game3/question4.mp3';
+import Question3Audio from '../assets/audio/game3/question4.mp3';
+import Question4Audio from '../assets/audio/game3/question4.mp3';
+import Question5Audio from '../assets/audio/game3/question5.mp3';
+import Question6Audio from '../assets/audio/game3/question6.mp3';
+import Question7Audio from '../assets/audio/game3/question7.mp3';
+import Question8Audio from '../assets/audio/game3/question8.mp3';
+import Question9Audio from '../assets/audio/game3/question9.mp3';
 
 const Wrapper = styled.div`
     background: #DC2424;  /* fallback for old browsers */
@@ -135,7 +143,7 @@ const allQuestions = [
             }
         ],
         correct: 1,
-        audio: GameAudio,
+        audio: Question1Audio,
         image: Question1
     },
     {
@@ -152,7 +160,7 @@ const allQuestions = [
             }
         ],
         correct: 0,
-        audio: GameAudio,
+        audio: Question2Audio,
         image: Question2
     },
     {
@@ -169,7 +177,7 @@ const allQuestions = [
             }
         ],
         correct: 2,
-        audio: GameAudio,
+        audio: Question3Audio,
         image: Question3
     },
     {
@@ -186,7 +194,7 @@ const allQuestions = [
             }
         ],
         correct: 0,
-        audio: GameAudio,
+        audio: Question4Audio,
         image: Question7
     },
     {
@@ -203,7 +211,7 @@ const allQuestions = [
             }
         ],
         correct: 1,
-        audio: GameAudio,
+        audio: Question5Audio,
         image: Question8
     },
     {
@@ -220,7 +228,7 @@ const allQuestions = [
             }
         ],
         correct: 2,
-        audio: GameAudio,
+        audio: Question6Audio,
         image: Question9
     },
     {
@@ -237,7 +245,7 @@ const allQuestions = [
             }
         ],
         correct: 1,
-        audio: GameAudio
+        audio: Question7Audio
     },
     {
         question: "Are roti, nu e masina, are pedale, nu merge cu benzina, ce e?",
@@ -253,7 +261,7 @@ const allQuestions = [
             }
         ],
         correct: 2,
-        audio: GameAudio
+        audio: Question8Audio
     },
     {
         question: "Multi calatori cara in spate si opreste in statiile special amenajate, ce e?",
@@ -269,7 +277,7 @@ const allQuestions = [
             }
         ],
         correct: 0,
-        audio: GameAudio
+        audio: Question9Audio
     }
 ];
 
