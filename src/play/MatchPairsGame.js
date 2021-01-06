@@ -41,21 +41,21 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h3`
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Comic Sans MS', cursive;
   text-align: center;
   margin-top: 50px;
   margin-bottom: 32px;
   font-size: 46px;
   color: #ffffff;
-  text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.7);
 `;
 
 const Text = styled.div`
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Comic Sans MS', cursive;
   text-align: center;
   font-size: 46px;
   color: #ffffff;
-  text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.7);
   margin: auto;
 `;
 
@@ -160,7 +160,7 @@ const MatchPairGame = () => {
 
     return (
         <Wrapper>
-            <Title>GASESTE PERECHILE</Title>
+            <Title>Găsește perechile</Title>
             <Board>
                 {cards.map(card => {
                     const img = card.flipped ? card.frontImg : card.backImg
@@ -171,7 +171,7 @@ const MatchPairGame = () => {
                         </div>
                     )
                 })}
-                {completed.length === 8 && <Text>FELICITARI! 🎉</Text>}
+                {completed.length === 8 && <Text>Felicitări! 🎉</Text>}
             </Board>
         </Wrapper>
     );

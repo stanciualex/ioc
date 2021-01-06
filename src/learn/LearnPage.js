@@ -18,12 +18,12 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h3`
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Comic Sans MS', cursive;
   text-align: center;
   margin-bottom: 32px;
   font-size: 46px;
   color: #ffffff;
-  text-shadow: 0px 8px 12px rgba(255,255,255,0.1);
+  text-shadow: 0px 8px 12px rgba(0,0,0,0.7);
   position: absolute;
   top: 16px;
 `;

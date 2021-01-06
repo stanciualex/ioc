@@ -9,6 +9,7 @@ import Game3Task from '../assets/audio/game3/task.mp3';
 import AudioController from "../components/AudioController";
 import MatchPairsGame from "./MatchPairsGame";
 import Button from "../components/Button";
+import AnswerQuestionsGame from "./AnswerQuestionsGame";
 
 const Wrapper = styled.div`
     background: #36D1DC;  /* fallback for old browsers */
@@ -98,7 +99,7 @@ const Play = ({ history, match }) => {
             case 2:
                 return GuessRoadGame;
             case 3:
-                return MatchPairsGame;
+                return AnswerQuestionsGame;
             case 4:
                 return GuessRoadGame;
             default:

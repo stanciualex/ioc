@@ -78,12 +78,19 @@ const ImageDone = styled.div`
 `;
 
 const Text = styled.div`
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Comic Sans MS', cursive;
   text-align: center;
   font-size: 46px;
   color: #ffffff;
-  text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.7);
   margin: auto;
+`;
+
+const Message = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 
 const firstElementsArray = [{
@@ -229,9 +236,11 @@ const GuessRoadGame = ({ match }) => {
                     ))}
                 </Column>
 
-                <Text>GASESTE DRUMUL POTRIVIT </Text>
+                <Message>
+                    <Text>Găsește drumul potrivit </Text>
 
-                {isGameDone && <Text>FELICITARI! 🎉</Text>}
+                    {isGameDone && <Text>Felicitări! 🎉</Text>}
+                </Message>
 
                 <Column>
                     {secondElements.map((item, index) => (

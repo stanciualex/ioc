@@ -104,7 +104,7 @@ const Learn = ({ history, match }) => {
             case 4:
                 return 'Motocicleta';
             case 5:
-                return 'Masina';
+                return 'Mașina';
             case 6:
                 return 'Autobuzul';
             case 7:
