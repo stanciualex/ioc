@@ -120,7 +120,7 @@ const buildCards = () => {
     return shuffle(cards)
 }
 
-const MatchPairGame = () => {
+const MatchPairGame = ({ enableContinue }) => {
     const [cards, setCards] = useState(buildCards())
     const [checkers, setCheckers] = useState([])
     const [completed, setCompleted] = useState([])
@@ -167,6 +167,9 @@ const MatchPairGame = () => {
                 completed.includes(card.type),
         }))
         setCards(newCards)
+        if (completed.length === 8) {
+            enableContinue();
+        }
     }, [checkers, completed])
 
     return (

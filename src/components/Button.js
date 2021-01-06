@@ -43,14 +43,14 @@ const Button = ({ type, ...props }) => {
 
     if (type === 'book') {
         Icon = MenuBook;
-        text = 'Incepe invatarea';
+        text = 'Începe invățarea';
         bgColor = '#02ad04';
         textColor = '#ffffff';
     }
 
     if (type === 'play') {
         Icon = SportsSoccer;
-        text = 'Incepe jocurile';
+        text = 'Începe jocurile';
         bgColor = '#e3db00';
         textColor = '#000000';
     }
@@ -58,6 +58,13 @@ const Button = ({ type, ...props }) => {
     if (type === 'continue') {
         Icon = ArrowForwardIos;
         text = 'Mai departe';
+        bgColor = '#02ad04';
+        textColor = '#ffffff';
+    }
+
+    if (type === 'home') {
+        Icon = ArrowForwardIos;
+        text = 'Pagina principală';
         bgColor = '#02ad04';
         textColor = '#ffffff';
     }

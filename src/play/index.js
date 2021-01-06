@@ -10,6 +10,7 @@ import AudioController from "../components/AudioController";
 import MatchPairsGame from "./MatchPairsGame";
 import Button from "../components/Button";
 import AnswerQuestionsGame from "./AnswerQuestionsGame";
+import Final from "./Final";
 
 const Wrapper = styled.div`
     background: #36D1DC;  /* fallback for old browsers */
@@ -50,12 +51,18 @@ const ContinueButtonWrapper = styled.div`
   right: 16px;
   bottom: 32px;
   cursor: pointer;
+  
+  ${props => props.disabled && `
+    filter: grayscale(100%);
+    cursor: no-drop;
+  `}
 `;
 
 
 const Play = ({ history, match }) => {
     const [page, setPage] = useState(0);
     const [audioProgress, setAudioProgress] = useState(0);
+    const [continueDisabled, setContinueDisabled] = useState(true);
 
     useEffect(() => {
         let paramsPage = parseInt(match.params.id);
@@ -67,11 +74,12 @@ const Play = ({ history, match }) => {
         if (paramsPage < 1) {
             paramsPage = 1;
         }
-        if (paramsPage > 3) {
-            paramsPage = 3;
+        if (paramsPage > 4) {
+            paramsPage = 4;
         }
 
         setPage(paramsPage);
+        setContinueDisabled(true);
     }, [match.params.id]);
 
     const goNext = () => {
@@ -84,7 +92,10 @@ const Play = ({ history, match }) => {
         // }
 
         history.push(`/play/${nextPage}`);
+        setContinueDisabled(true);
     };
+
+    const enableContinue = () => setContinueDisabled(false);
 
     const getGameAudioByPage = (page) => {
         switch (page) {
@@ -108,7 +119,7 @@ const Play = ({ history, match }) => {
             case 3:
                 return AnswerQuestionsGame;
             case 4:
-                return GuessRoadGame;
+                return Final;
             default:
                 return MatchPairsGame;
         }
@@ -139,7 +150,7 @@ const Play = ({ history, match }) => {
                 <Progress percent={gameProgress} backgroundColor="red"/>
             </ProgressBar>
 
-            <GameComponent onc  c/>
+            <GameComponent enableContinue={enableContinue}/>
 
             <AudioButtonWrapper>
                 <AudioController
@@ -150,12 +161,14 @@ const Play = ({ history, match }) => {
                 />
             </AudioButtonWrapper>
 
-            <ProgressBar>
-                <Progress percent={audioProgress} backgroundColor="#30a6e6"/>
-                {page < 4 && <ContinueButtonWrapper onClick={goNext}>
-                    <Button type="continue"/>
-                </ContinueButtonWrapper>}
-            </ProgressBar>
+            {page < 4 && (
+                <ProgressBar>
+                    <Progress percent={audioProgress} backgroundColor="#30a6e6"/>
+                    <ContinueButtonWrapper disabled={continueDisabled} onClick={() => !continueDisabled && goNext()}>
+                        <Button type="continue"/>
+                    </ContinueButtonWrapper>}
+                </ProgressBar>
+            )}
         </Wrapper>
     );
 };
