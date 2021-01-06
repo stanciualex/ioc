@@ -7,13 +7,11 @@ import shuffle from 'lodash/shuffle';
 import BicycleImage from '../assets/images/guessRoadGame/vehicles/bicycle.jpg';
 import CarImage from '../assets/images/guessRoadGame/vehicles/car.jpg';
 import TrainImage from '../assets/images/guessRoadGame/vehicles/train.png';
-import TractorImage from '../assets/images/guessRoadGame/vehicles/tractor.jpg';
 import PedestrianImage from '../assets/images/guessRoadGame/vehicles/pedestrian.jpg';
 
 import BicycleRoadImage from '../assets/images/guessRoadGame/roads/bicycle.jpg';
 import CarRoadImage from '../assets/images/guessRoadGame/roads/car.jpg';
 import TrainRoadImage from '../assets/images/guessRoadGame/roads/train.jpg';
-import TractorRoadImage from '../assets/images/guessRoadGame/roads/tractor.jpg';
 import PedestrianRoadImage from '../assets/images/guessRoadGame/roads/pedestrian.jpg';
 
 const Wrapper = styled.div`
@@ -96,9 +94,6 @@ const firstElementsArray = [{
     image: TrainImage,
     value: 'train',
 }, {
-    image: TractorImage,
-    value: 'tractor',
-}, {
     image: PedestrianImage,
     value: 'pedestrian',
 }];
@@ -111,9 +106,6 @@ const secondElementsArray = [{
 }, {
     image: TrainRoadImage,
     value: 'train',
-}, {
-    image: TractorRoadImage,
-    value: 'tractor',
 }, {
     image: PedestrianRoadImage,
     value: 'pedestrian',

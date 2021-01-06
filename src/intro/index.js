@@ -18,14 +18,7 @@ const Wrapper = styled.div`
 `;
 
 const Section = styled.div`
-  flex: 1 0 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
-  width: 15%;
-  height: 10%;
-  min-height: 50px;
   position: absolute;
   bottom: 16px;
   
@@ -36,25 +29,20 @@ const Section = styled.div`
 `;
 
 const LearnSection = styled(Section)`
-     left: 16px;
+  left: 16px;
 `;
 
 const PlaySection = styled(Section)`
-    right: 16px;
+  right: 16px;
 `;
 
 const AudioWrapper = styled.div`
   text-align: center;
-  margin-top: 5%;
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-bottom: 16px;
 `;
 
 const Intro = ({ history }) => {
     const isLearnSectionDone = JSON.parse(localStorage.getItem('isLearnSectionDone'));
-    const audioSrc = isLearnSectionDone ? GameAudio : LearnAudio;
 
     const goToLearnSection = () => {
         history.push('/learn')
@@ -68,14 +56,17 @@ const Intro = ({ history }) => {
 
     return (
         <Wrapper background={BackgroundImage}>
-            <AudioWrapper>
-                <AudioController src={audioSrc}/>
-            </AudioWrapper>
-            <LearnSection onClick={goToLearnSection}>
-                <Button type="book"/>
+            <LearnSection>
+                <AudioWrapper>
+                    <AudioController src={LearnAudio}/>
+                </AudioWrapper>
+                <Button type="book" onClick={goToLearnSection}/>
             </LearnSection>
-            <PlaySection onClick={goToPlaySection} disabled={!isLearnSectionDone}>
-                <Button type="play"/>
+            <PlaySection disabled={!isLearnSectionDone}>
+                <AudioWrapper>
+                    <AudioController src={GameAudio} disabled={!isLearnSectionDone}/>
+                </AudioWrapper>
+                <Button type="play" onClick={() => isLearnSectionDone && goToPlaySection()}/>
             </PlaySection>
         </Wrapper>
     );

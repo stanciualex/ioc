@@ -16,6 +16,7 @@ const Wrapper = styled.div`
   font-family: 'Roboto', sans-serif;
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
   transition: all 0.2s linear;
+  margin: 0 auto;
   
   &:hover {
     box-shadow: 0 16px 24px rgba(0, 0, 0, 0.15);

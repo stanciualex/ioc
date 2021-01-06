@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   border-radius: 50%;
   background-color: #30a6e6;
   position: relative;
-  cursor: pointer;
+  cursor: ${props => props.disabled ? 'no-drop' : 'pointer'};
   transition: all 0.2s linear;
   
   &:hover {

@@ -33,7 +33,7 @@ const Progress = styled.div`
   transition: width 0.3s linear;
 `;
 
-const AudioController = ({ src, progressBar = true, onProgressCallback, autoPlay = false }) => {
+const AudioController = ({ src, progressBar = true, onProgressCallback, autoPlay = false, disabled = false, }) => {
     const audioElement = useRef(null);
     const [playing, setPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
@@ -48,6 +48,12 @@ const AudioController = ({ src, progressBar = true, onProgressCallback, autoPlay
             }
         }
     }, [audioElement.current]);
+
+    useEffect(() => {
+        if (playing && audioElement.current && audioElement.current.paused) {
+            setPlaying(false);
+        }
+    }, [audioElement.current && audioElement.current.paused]);
 
     useEffect(() => {
         if (audioElement && audioElement.current) {
@@ -66,6 +72,11 @@ const AudioController = ({ src, progressBar = true, onProgressCallback, autoPlay
         if (playing) {
             audioElement.current.pause();
         } else {
+            const otherAudios = document.querySelectorAll('audio');
+
+            for (let i = 0; i < otherAudios.length; i++) {
+                otherAudios[i].pause();
+            }
             audioElement.current.play();
         }
         setPlaying(!playing);
@@ -90,7 +101,7 @@ const AudioController = ({ src, progressBar = true, onProgressCallback, autoPlay
 
     return (
         <WrapperComponent>
-            <PlayAudioButton playing={playing} onClick={togglePlaying}/>
+            <PlayAudioButton playing={playing} onClick={!disabled && togglePlaying} disabled={disabled}/>
 
             <audio id="audio" ref={audioElement}>
                 <source type="audio/mpeg"/>
