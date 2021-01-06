@@ -19,9 +19,9 @@ import Question6Answer2 from '../assets/images/answerQuestionsGame/question6/aut
 import Question6Answer3 from '../assets/images/answerQuestionsGame/question6/motocicleta.jpg';
 
 import AudioController from "../components/AudioController";
-import Question1Audio from '../assets/audio/game3/question4.mp3';
-import Question2Audio from '../assets/audio/game3/question4.mp3';
-import Question3Audio from '../assets/audio/game3/question4.mp3';
+import Question1Audio from '../assets/audio/game3/question1.mp3';
+import Question2Audio from '../assets/audio/game3/question2.mp3';
+import Question3Audio from '../assets/audio/game3/question3.mp3';
 import Question4Audio from '../assets/audio/game3/question4.mp3';
 import Question5Audio from '../assets/audio/game3/question5.mp3';
 import Question6Audio from '../assets/audio/game3/question6.mp3';
