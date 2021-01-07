@@ -46,10 +46,12 @@ const AudioController = ({ src, progressBar = true, onProgressCallback, autoPlay
         if (audioElement && audioElement.current) {
             audioElement.current.addEventListener('timeupdate', onProgress);
 
-            if (autoPlay) {
-                audioElement.current.play();
-                setPlaying(true);
-            }
+            try {
+                if (autoPlay) {
+                    audioElement.current.play();
+                    setPlaying(true);
+                }
+            } catch (_) {}
         }
     }, [audioElement.current]);
 
@@ -65,10 +67,12 @@ const AudioController = ({ src, progressBar = true, onProgressCallback, autoPlay
             setPlaying(false);
             setProgress(0);
 
-            if (autoPlay) {
-                audioElement.current.play();
-                setPlaying(true);
-            }
+            try {
+                if (autoPlay) {
+                    audioElement.current.play();
+                    setPlaying(true);
+                }
+            } catch (_) {}
         }
     }, [src]);
 
