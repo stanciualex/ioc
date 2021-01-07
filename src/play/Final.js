@@ -16,6 +16,8 @@ const Wrapper = styled.div`
 const Image = styled.img`
   width: 50%;
   height: auto;
+  box-shadow: 0px 0px 4px black;
+  border-radius: 10px;
 `;
 
 const Text = styled.h3`
@@ -24,7 +26,7 @@ const Text = styled.h3`
   margin-bottom: 32px;
   font-size: 46px;
   color: #ffffff;
-  text-shadow: 0px 8px 12px rgba(0,0,0,0.7);
+  text-shadow: 0px 0px 12px rgba(0,0,0,0.7);
   margin-top: 12px;
   
   @media only screen and (max-width: 1000px) {
@@ -37,7 +39,7 @@ const Final = ({ history }) => {
         <Wrapper>
             <div style={{ textAlign: 'center' }}>
                 <Image src={CelebrationImage} alt="Winner"/>
-                <Text>Felicitări! Esti noul șef al garajului! 🎉</Text>
+                <Text>Felicitări! Ești noul șef al garajului! 🎉</Text>
                 <Button type={'home'} onClick={() => history.push('/')} style={{ cursor: 'pointer' }}/>
             </div>
         </Wrapper>

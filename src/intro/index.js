@@ -47,13 +47,13 @@ const Title = styled.div`
   margin-bottom: 32px;
   font-size: 46px;
   color: #ffffff;
-  text-shadow: 2px 4px 8px rgba(0,0,0,0.7);
+  text-shadow: 0px 0px 12px rgba(0,0,0,0.7);
   position: absolute;
   top: 30%;
   left: 50%;
   transform: translateX(-50%);
   width: fit-content;
-  padding: 8px 16px;
+  padding: 16px 24px;
   background-color: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 10px;

@@ -59,6 +59,7 @@ const Image = styled.img`
   border: 6px solid #ffffff;
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0px 0px 4px black;
   
   ${props => props.active && `
     border: 6px solid #42f54e;
@@ -83,7 +84,7 @@ const Text = styled.div`
   text-align: center;
   font-size: 46px;
   color: #ffffff;
-  text-shadow: 2px 2px 3px rgba(0,0,0,0.7);
+  text-shadow: 0px 0px 12px rgba(0,0,0,0.7);
   margin: auto;
   
   @media only screen and (max-width: 1000px) {

@@ -23,7 +23,7 @@ const Title = styled.h3`
   margin-bottom: 32px;
   font-size: 46px;
   color: #ffffff;
-  text-shadow: 0px 8px 12px rgba(0,0,0,0.7);
+  text-shadow: 0px 0px 12px rgba(0,0,0,0.7);
   position: absolute;
   top: 16px;
   
@@ -33,8 +33,10 @@ const Title = styled.h3`
 `;
 
 const Image = styled.img`
-  width: 70%;
-  height: auto;
+  max-width: 100%;
+  max-height: 70%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 8px black;
 `;
 
 const AudioButtonWrapper = styled.div`

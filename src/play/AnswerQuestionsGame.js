@@ -39,7 +39,8 @@ const Wrapper = styled.div`
     margin: auto;
     
     .question {
-      border: 1px solid black;
+      border: 1px solid white;
+      box-shadow: 0px 0px 4px black;
       padding: 20px;
       margin-bottom: 60px;
       width: 100%;
@@ -56,6 +57,7 @@ const Wrapper = styled.div`
           display: flex;
           flex-direction: row;
           align-items: center;
+          justify-content: center;
           flex-wrap: wrap;
         }
         
@@ -67,6 +69,8 @@ const Wrapper = styled.div`
           height: 200px;
           border-radius: 10px;
           margin-right: 30px;
+          margin-bottom: 20px;
+          box-shadow: 0px 0px 4px black;
           
           @media only screen and (max-width: 1000px) {
             height: 170px;
@@ -75,6 +79,7 @@ const Wrapper = styled.div`
       
         .answer {
           margin-left: 30px;
+          margin-bottom: 20px;
           border: 1px solid white;
           transition: all .2s;
           border-radius: 10px;
@@ -83,6 +88,7 @@ const Wrapper = styled.div`
           display: flex;
           justify-content: center;
           overflow: hidden;
+          box-shadow: 0px 0px 4px black;
           
           @media only screen and (max-width: 1000px) {
             height: 150px;
@@ -119,7 +125,7 @@ const Title = styled.div`
   margin-bottom: 32px;
   font-size: 46px;
   color: #ffffff;
-  text-shadow: 2px 2px 3px rgba(0,0,0,0.7);
+  text-shadow: 0px 0px 12px rgba(0,0,0,0.7);
   
   @media only screen and (max-width: 1000px) {
     font-size: 36px;
@@ -131,7 +137,7 @@ const Text = styled.div`
   font-size: 38px;
   color: #ffffff;
   text-align: center;
-  text-shadow: 2px 2px 3px rgba(0,0,0,0.7);
+  text-shadow: 0px 0px 12px rgba(0,0,0,0.7);
   margin: auto;
   padding-bottom: 20px;
   

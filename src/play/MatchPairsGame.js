@@ -35,6 +35,7 @@ const Wrapper = styled.div`
       width: 180px;
       height: 180px;
       border-radius: 10px;
+      box-shadow: 0px 0px 4px black;
       
       @media only screen and (max-width: 1000px) {
         height: 150px;
@@ -46,11 +47,10 @@ const Wrapper = styled.div`
 const Title = styled.h3`
   font-family: 'Comic Sans MS', cursive;
   text-align: center;
-  margin-top: 50px;
   margin-bottom: 32px;
   font-size: 46px;
   color: #ffffff;
-  text-shadow: 2px 2px 3px rgba(0,0,0,0.7);
+  text-shadow: 0px 0px 12px rgba(0,0,0,0.7);
   
   @media only screen and (max-width: 1000px) {
     font-size: 36px;
@@ -62,7 +62,7 @@ const Text = styled.div`
   text-align: center;
   font-size: 46px;
   color: #ffffff;
-  text-shadow: 2px 2px 3px rgba(0,0,0,0.7);
+  text-shadow: 0px 0px 12px rgba(0,0,0,0.7);
   margin: auto;
 `;
 
