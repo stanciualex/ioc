@@ -18,6 +18,7 @@ const Wrapper = styled.div`
     width: 100vw;
     height: 100vh;
     padding-bottom: 100px;
+    padding-top: 50px;
     overflow: scroll;
     
     .Card{

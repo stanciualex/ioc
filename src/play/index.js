@@ -6,6 +6,7 @@ import GuessRoadGame from "./GuessRoadGame";
 import Game1Task from '../assets/audio/game1/task.mp3';
 import Game2Task from '../assets/audio/game2/task.mp3';
 import Game3Task from '../assets/audio/game3/task.mp3';
+import FinalAudio from '../assets/audio/final.mp3';
 import AudioController from "../components/AudioController";
 import MatchPairsGame from "./MatchPairsGame";
 import Button from "../components/Button";
@@ -105,6 +106,8 @@ const Play = ({ history, match }) => {
                 return Game2Task;
             case 3:
                 return Game3Task;
+            case 4:
+                return FinalAudio;
             default:
                 return null;
         }
@@ -161,12 +164,14 @@ const Play = ({ history, match }) => {
                 />
             </AudioButtonWrapper>
 
-            {page < 4 && (
+            {page <= 4 && (
                 <ProgressBar>
                     <Progress percent={audioProgress} backgroundColor="#30a6e6"/>
-                    <ContinueButtonWrapper disabled={continueDisabled} onClick={() => !continueDisabled && goNext()}>
-                        <Button type="continue"/>
-                    </ContinueButtonWrapper>}
+                    {page < 4 && (
+                        <ContinueButtonWrapper disabled={continueDisabled} onClick={() => !continueDisabled && goNext()}>
+                            <Button type="continue"/>
+                        </ContinueButtonWrapper>
+                    )}
                 </ProgressBar>
             )}
         </Wrapper>

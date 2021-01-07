@@ -8,11 +8,13 @@ import BicycleImage from '../assets/images/guessRoadGame/vehicles/bicycle.jpg';
 import CarImage from '../assets/images/guessRoadGame/vehicles/car.jpg';
 import TrainImage from '../assets/images/guessRoadGame/vehicles/train.png';
 import PedestrianImage from '../assets/images/guessRoadGame/vehicles/pedestrian.jpg';
+import BusImage from '../assets/images/guessRoadGame/vehicles/bus.jpg';
 
 import BicycleRoadImage from '../assets/images/guessRoadGame/roads/bicycle.jpg';
 import CarRoadImage from '../assets/images/guessRoadGame/roads/car.jpg';
 import TrainRoadImage from '../assets/images/guessRoadGame/roads/train.jpg';
 import PedestrianRoadImage from '../assets/images/guessRoadGame/roads/pedestrian.jpg';
+import BusRoadImage from '../assets/images/guessRoadGame/roads/bus.jpg';
 
 const Wrapper = styled.div`
     background: #36D1DC;  /* fallback for old browsers */
@@ -36,18 +38,20 @@ const Column = styled.div`
   width: 100%;
   overflow: scroll;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 `;
 
 const ImageContainer = styled.div`
-  height: 200px;
-  @media only screen and (max-width: 1000px) {
+  height: 180px;
+  @media only screen and (max-width: 1200px) {
         height: 160px;
       }
   cursor: pointer;
   margin: 12px auto;
   position: relative;
+  padding: 10px;
 `;
 
 const Image = styled.img`
@@ -103,6 +107,9 @@ const firstElementsArray = [{
 }, {
     image: TrainImage,
     value: 'train',
+},{
+    image: BusImage,
+    value: 'bus',
 }, {
     image: PedestrianImage,
     value: 'pedestrian',
@@ -116,6 +123,9 @@ const secondElementsArray = [{
 }, {
     image: TrainRoadImage,
     value: 'train',
+}, {
+    image: BusRoadImage,
+    value: 'bus',
 }, {
     image: PedestrianRoadImage,
     value: 'pedestrian',
