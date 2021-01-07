@@ -3,7 +3,7 @@ import styled from "styled-components";
 import shuffle from 'lodash/shuffle';
 
 import Question1 from '../assets/images/answerQuestionsGame/question1.jpg';
-import Question2 from '../assets/images/answerQuestionsGame/question2.jpg';
+import Question2 from '../assets/images/answerQuestionsGame/question10.jpg';
 import Question3 from '../assets/images/answerQuestionsGame/question3.jpg';
 import Question7 from '../assets/images/answerQuestionsGame/question7.jpg';
 import Question8 from '../assets/images/answerQuestionsGame/question8.jpg';
@@ -112,7 +112,7 @@ const Wrapper = styled.div`
     }
 `;
 
-const Title = styled.h3`
+const Title = styled.div`
   font-family: 'Comic Sans MS', cursive;
   text-align: center;
   margin-top: 50px;
@@ -152,7 +152,7 @@ const GameWrapper = styled.div`
 
 const allQuestions = [
     {
-        question: "Se deplaseaza pe unde trebuie biciclistul?",
+        question: "Se deplasează pe unde trebuie biciclistul?",
         answers: [
             {
                 text: 'DA'
@@ -161,7 +161,7 @@ const allQuestions = [
                 text: 'NU'
             },
             {
-                text: 'NU stiu'
+                text: 'NU știu'
             }
         ],
         correct: 1,
@@ -169,7 +169,7 @@ const allQuestions = [
         image: Question1
     },
     {
-        question: "Semaforul este rosu. Are voie pietonul sa treaca?",
+        question: "Semaforul este roșu. Are voie pietonul să treacă?",
         answers: [
             {
                 text: 'NU'
@@ -178,7 +178,7 @@ const allQuestions = [
                 text: 'DA'
             },
             {
-                text: 'NU stiu'
+                text: 'NU știu'
             }
         ],
         correct: 0,
@@ -186,10 +186,10 @@ const allQuestions = [
         image: Question2
     },
     {
-        question: "Motociclistul este imbracat corect?",
+        question: "Motociclistul poartă cască de protecție?",
         answers: [
             {
-                text: 'NU stiu'
+                text: 'NU știu'
             },
             {
                 text: 'DA'
@@ -203,7 +203,7 @@ const allQuestions = [
         image: Question3
     },
     {
-        question: "Cate masini sunt in imagine?",
+        question: "Câte mașini sunt în imagine?",
         answers: [
             {
                 text: '2'
@@ -220,7 +220,7 @@ const allQuestions = [
         image: Question7
     },
     {
-        question: "Cate vagoane are trenul din imagine?",
+        question: "Câte vagoane are trenul din imagine?",
         answers: [
             {
                 text: '1'
@@ -237,7 +237,7 @@ const allQuestions = [
         image: Question8
     },
     {
-        question: "Cate tramvaie sunt in imagine?",
+        question: "Câte tramvaie sunt în imagine?",
         answers: [
             {
                 text: '2'
@@ -254,23 +254,23 @@ const allQuestions = [
         image: Question9
     },
     {
-        question: "Merge pe sine, transporta marfa si opreste in gara, ce e?",
+        question: "Merge pe șine, transportă marfă și oprește in gară, ce e?",
         answers: [
             {
                 image: Question4Answer1
             },
             {
-                image: Question4Answer2
+                image: Question4Answer3
             },
             {
-                image: Question4Answer3
+                image: Question4Answer2
             }
         ],
         correct: 1,
         audio: Question7Audio
     },
     {
-        question: "Are roti, nu e masina, are pedale, nu merge cu benzina, ce e?",
+        question: "Are roți, nu e mașină, are pedale, nu merge cu benzină, ce e?",
         answers: [
             {
                 image: Question5Answer3
@@ -286,16 +286,16 @@ const allQuestions = [
         audio: Question8Audio
     },
     {
-        question: "Multi calatori cara in spate si opreste in statiile special amenajate, ce e?",
+        question: "Mulți călători cară în spate și oprește în stațiile special amenajate, ce e?",
         answers: [
             {
                 image: Question6Answer2
             },
             {
-                image: Question6Answer1
+                image: Question6Answer3
             },
             {
-                image: Question6Answer3
+                image: Question6Answer1
             }
         ],
         correct: 0,
@@ -353,7 +353,7 @@ const AnswerQuestionsGame = ({ enableContinue }) => {
 
     return (
         <Wrapper>
-            <Title>Raspunde corect la intrebari:</Title>
+            <Title>Răspunde corect la întrebări:</Title>
 
             <GameWrapper>
                 {questions.map((question, questionIndex) => {
@@ -384,7 +384,8 @@ const AnswerQuestionsGame = ({ enableContinue }) => {
                         </div>
                     )
                 })}
-                {gameIsDone && <Text>Bravo! Ai raspuns corect la {score} intrebari! 🎉</Text>}
+                {gameIsDone && score > 3 && <Text>Bravo! Ai răspuns corect la {score}/9 întrebări! 🎉</Text>}
+                {gameIsDone && score <= 3 && <Text>Ai răspuns corect la {score}/9 întrebări! Mai trebuie să studiezi puțin.</Text>}
             </GameWrapper>
         </Wrapper>
     );

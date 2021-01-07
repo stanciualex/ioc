@@ -41,11 +41,9 @@ const Column = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  max-width: 200px;
-  max-height: 200px;
+  height: 200px;
   @media only screen and (max-width: 1000px) {
-        max-height: 160px;
-        max-width: 160px;
+        height: 160px;
       }
   cursor: pointer;
   margin: 12px auto;
@@ -53,8 +51,7 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled.img`
-  width: 100%;
-  height: auto;
+  height: 100%;
   border: 6px solid #ffffff;
   border-radius: 8px;
   overflow: hidden;
