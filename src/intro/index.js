@@ -20,7 +20,7 @@ const Wrapper = styled.div`
 const Section = styled.div`
   cursor: pointer;
   position: absolute;
-  bottom: 16px;
+  bottom: 48px;
   
   ${props => props.disabled && `
     filter: grayscale(100%);
@@ -41,6 +41,29 @@ const AudioWrapper = styled.div`
   margin-bottom: 16px;
 `;
 
+const Title = styled.div`
+  font-family: 'Comic Sans MS', cursive;
+  text-align: center;
+  margin-bottom: 32px;
+  font-size: 46px;
+  color: #ffffff;
+  text-shadow: 2px 4px 8px rgba(0,0,0,0.7);
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+  padding: 8px 16px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  
+  @media only screen and (max-width: 1000px) {
+    font-size: 36px;
+    top: 25%;
+  }
+`;
+
 const Intro = ({ history }) => {
     const isLearnSectionDone = JSON.parse(localStorage.getItem('isLearnSectionDone'));
 
@@ -56,6 +79,7 @@ const Intro = ({ history }) => {
 
     return (
         <Wrapper background={BackgroundImage}>
+            <Title>Mijloace de Transport pe Uscat</Title>
             <LearnSection>
                 <AudioWrapper>
                     <AudioController src={LearnAudio}/>
